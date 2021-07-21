@@ -1,4 +1,5 @@
 'use strict'
+const { container } = require('webpack')
 const store = require('../store')
 
 const onSignUpSuccess = (response) => {
@@ -33,15 +34,15 @@ const onSignOutFailure = () => {
 }
 
 const onCreateGameSuccess = (response) => {
-  $('message').text('')
-  $('#game').trigger('reset')
+  $('message').text('Click on the board and choose where you want to place your O or X')
+  $('#board').show
 }
 const onCreateGameFailure = () => {
   $('message').text('Create game failure')
   $('#game').trigger('reset')
 }
 const onUpdateGame = (response) => {
-
+  console.log(response)
 }
 
 module.exports = {
