@@ -12,6 +12,52 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <p id="message"></p>
+      <h1>Welcome to Pablo's Tic-Tac-Toe Game!</h1>
+
+      <h2>Sign Up</h2>
+      <form id="sign-up">
+        <label>Email</label>
+        <input name="credentials[email]" type="email">
+        <label>Password</label>
+        <input name="credentials[password]" type="password">
+        <label>Password Confirmation</label>
+        <input name="credentials[password_confirmation]" type="password">
+        <input type="submit" value="Sign Up">
+      </form>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+      </style>
+      <h2>Sign In</h2>
+      <form id="sign-in">
+        <label>Email</label>
+        <input name="credentials[email]" type="email">
+        <label>Password</label>
+        <input name="credentials[password]" type="password">
+        <input type="submit" value="Sign In">
+
+
+      </form>
+      <button id="sign-out" type="Sign Out">Sign Out</button>
+      <br>
+      <button id="create-game" type="Create Game">Create Game</button>
+      <section class="container">
+        <div class="row h-100 board">
+        <div class="col-4 box">0</div>
+        <div class="col-4 box">1</div>
+        <div class="col-4 box">2</div>
+
+        <div class="col-4 box">3</div>
+        <div class="col-4 box">4</div>
+        <div class="col-4 box">5</div>
+
+        <div class="col-4 box">6</div>
+        <div class="col-4 box">7</div>
+        <div class="col-4 box">8</div>
+
+
+
+      </div>
+      </section>
     </body>
-</html>
+    </html>
