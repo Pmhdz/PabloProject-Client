@@ -25,13 +25,19 @@ const onSignIn = function (event) {
   // handle failed api call with .catch
   const data = getFormFields(form)
 
-  api.signIn(data).then(ui.onSignInSuccess).catch(ui.onSignInSuccess)
+  api.signIn(data)
+    .then(ui.onSignInSuccess)
+    .catch(ui.onSignInSuccess)
 }
 const onSignOut = function (event) {
-  api.signOut().then(ui.onSignOutSuccess).catch(ui.onSignOutFailure)
+  api.signOut()
+    .then(ui.onSignOutSuccess)
+    .catch(ui.onSignOutFailure)
 }
 const onCreateGame = function (event) {
-  api.createGame().then(ui.onCreateGame).catch(ui.onCreateGame)
+  api.createGame()
+    .then(ui.onCreateGame)
+    .catch(ui.onCreateGame)
 }
 // start player at x
 let currentPlayer = 'x'
@@ -42,6 +48,8 @@ const onUpdateGame = (event) => {
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
   console.log(board.currentPlayer)
+  $('#update-game').rest()
+  console.log(event.game.cells)
 }
 module.exports = {
   onSignUp,

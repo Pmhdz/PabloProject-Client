@@ -18,12 +18,11 @@ const signIn = function (data) {
   })
 }
 const signOut = function () {
-  console.log()
   return $.ajax({
     url: config.apiUrl + '/sign-out',
     method: 'DELETE',
     headers: {
-      Authorization: 'Bearer' + store.token
+      Authorization: 'Bearer ' + store.token
     }
   })
 }
@@ -32,7 +31,7 @@ const createGame = function (data) {
     url: config.apiUrl + '/create-game',
     method: 'POST',
     headers: {
-      Authorization: 'Bearer' + store.token
+      Authorization: 'Bearer ' + store.token
     }
   })
 }
@@ -42,7 +41,7 @@ const updateGame = function () {
     url: config.apiUrl + '/update-game',
     method: 'POST',
     headers: {
-      Authorization: 'Bearer' + store.token
+      Authorization: 'Bearer ' + store.token
     },
     date: {
       game: {
