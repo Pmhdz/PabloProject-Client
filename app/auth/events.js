@@ -44,11 +44,11 @@ let currentPlayer = 'x'
 const onUpdateGame = (event) => {
   (event).preventDefault()
   console.log('click')
-  const box = $(event.target)
-  box.text(currentPlayer)
+  const container = $(event.target)
+  container.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
-  console.log(box.currentPlayer)
+  console.log(container.currentPlayer)
   // ('#update-game').rest()
   console.log(event.game.cells)
   console.log(currentPlayer.event)
