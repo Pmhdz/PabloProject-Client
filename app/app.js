@@ -10,6 +10,6 @@ $(() => {
   $('#sign-in').on('submit', authEvents.onSignIn)
   $('#sign-out').on('click', authEvents.onSignOut)
   $('#create-game').on('click', authEvents.onCreateGame)
-  $('#board').on('click', authEvents.onupdateGame)
-  // $('#update-game').on('click', authEvents.onUpdateGame)
+  $('#box').on('click', authEvents.onUpdateGame)
+  $('#update-game').on('submit', authEvents.onUpdateGame)
 })

@@ -36,20 +36,22 @@ const onSignOut = function (event) {
 }
 const onCreateGame = function (event) {
   api.createGame()
-    .then(ui.onCreateGame)
-    .catch(ui.onCreateGame)
+    .then(ui.onCreateGameSuccess)
+    .catch(ui.onCreateGameFailure)
 }
-// start player at x
+// start player then go X and then to O
 let currentPlayer = 'x'
 const onUpdateGame = (event) => {
+  (event).preventDefault()
   console.log('click')
-  const board = $(event.target)
-  board.text(currentPlayer)
+  const box = $(event.target)
+  box.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
-  console.log(board.currentPlayer)
-  $('#update-game').rest()
+  console.log(box.currentPlayer)
+  // ('#update-game').rest()
   console.log(event.game.cells)
+  console.log(currentPlayer.event)
 }
 module.exports = {
   onSignUp,

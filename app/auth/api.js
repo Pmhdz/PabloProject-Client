@@ -26,9 +26,9 @@ const signOut = function () {
     }
   })
 }
-const createGame = function (data) {
+const createGame = function () {
   return $.ajax({
-    url: config.apiUrl + '/create-game',
+    url: config.apiUrl + '/games',
     method: 'POST',
     headers: {
       Authorization: 'Bearer ' + store.token
@@ -38,8 +38,8 @@ const createGame = function (data) {
 
 const updateGame = function () {
   return $.ajax({
-    url: config.apiUrl + '/update-game',
-    method: 'POST',
+    url: config.apiUrl + '/games/' + 'store.game._id',
+    method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + store.token
     },

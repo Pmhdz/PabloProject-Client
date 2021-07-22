@@ -15,36 +15,47 @@ const onSignInSuccess = (response) => {
   $('#message').text(`Thank you for logging in ${response.user.email}`)
   store.token = response.user.token
   $('#sign-in').trigger('reset')
+  $('#sign-in').hide()
+  $('#sign-up').hide()
+  $('#sign-out').show()
+  $('#board').show()
 }
-const onSignInFailure = (response) => {
+const onSignInFailure = () => {
   $('#message').text('Sign in failure')
   $('#sign-in').trigger('reset')
 }
 
-const onSignOutSuccess = () => {
+const onSignOutSuccess = (response) => {
   $('#message').text('Thank you for signing out')
   $('#sign-out').trigger('reset')
-  $('#sign-in-form').show()
-  $('#sign-up-form').show()
-  $('#sign-out').hide()
 }
-
 const onSignOutFailure = () => {
   $('message').text('Sign out failure')
 }
 
 const onCreateGameSuccess = (response) => {
-  $('message').text('Click on the board and choose where you want to place your O or X')
-  $('#board').show()
-}
-const onCreateGameFailure = () => {
-  $('message').text('Create game failure')
-  $('#game').trigger('reset')
-}
-const onUpdateGame = (response) => {
+  $('#message').text('Ready to play! Change to O or X.')
+  $('#sign-in').hide()
+  $('sign-out').hide()
+  store.game = response.game
   console.log(response)
+  console.log(store.game)
 }
 
+const onCreateGameFailure = () => {
+  $('message').text('Create game failure')
+}
+const onUpdateGameSuccess = (response) => {
+  console.log(response)
+  response.game.cells.forEach(function (val, i) {})
+  $('#message').text('Update is successful!')
+  store.game = response.game
+  console.log(store.game)
+}
+
+const onUpdateGameFailure = () => {
+  $('#message').text('Update failure')
+}
 module.exports = {
   onSignUpFailure,
   onSignUpSuccess,
@@ -54,5 +65,6 @@ module.exports = {
   onSignOutFailure,
   onCreateGameSuccess,
   onCreateGameFailure,
-  onUpdateGame
+  onUpdateGameSuccess,
+  onUpdateGameFailure
 }
