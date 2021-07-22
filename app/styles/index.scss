@@ -14,6 +14,7 @@ div {
 h2 {
 	background-color:skyblue;
   font-family: 'Anton', sans-serif;
+  p.solid {border-style: solid;}
 }
 
 h1 {
@@ -24,6 +25,7 @@ h1 {
   height: 100vh;
   background-color:skyblue
 }
+
 
 .board {
   margin: auto ;
