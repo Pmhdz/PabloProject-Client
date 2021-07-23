@@ -38,6 +38,7 @@ const onCreateGameSuccess = (response) => {
   $('#sign-in').hide()
   $('sign-out').hide()
   store.game = response.game
+  $('.board').show()
 }
 
 const onCreateGameFailure = () => {
