@@ -6,6 +6,8 @@ const onSignUpSuccess = (response) => {
   $('#message').text(`Thank you for signing up ${response.user.email}`)
   console.log(response)
   $('#sign-up').trigger('reset')
+  $('#sign-in').hide()
+  $('.board').hide()
 }
 const onSignUpFailure = () => {
   $('#message').text('Sign up failure')

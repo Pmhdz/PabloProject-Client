@@ -1,6 +1,6 @@
 # Description
 
-This is my Tic Tac Toe project and I've work very hard for it
+This is my Tic Tac Toe project and I've work very hard for it.
 
 ## Wire frame and User Story
 
