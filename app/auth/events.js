@@ -45,8 +45,9 @@ let currentPlayer = 'x'
 const onUpdateGame = (event) => {
   (event).preventDefault()
   console.log('click')
-  const container = $(event.target)
-  container.text(currentPlayer)
+  const boardedClicked = $(event.target)
+  if (boardedClicked.text()) return
+  boardedClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
   console.log(container.currentPlayer)
