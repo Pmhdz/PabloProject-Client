@@ -50,10 +50,12 @@ const onUpdateGame = (event) => {
   boardedClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   // const move = $(event.target)
-  console.log(container.currentPlayer)
+  // console.log(container.currentPlayer)
   // ('#update-game').rest()
-  console.log(event.game.cells)
-  console.log(currentPlayer.event)
+  console.log(event.game.Index)
+  api.updateGame(currentPlayer)
+    .then(ui.onUpdateGameSuccess)
+    .catch(ui.onUpdateGameFailure)
 }
 module.exports = {
   onSignUp,
