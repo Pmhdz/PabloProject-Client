@@ -8,8 +8,6 @@ const onSignUpSuccess = (response) => {
   $('#sign-up').trigger('reset')
   $('#sign-in').hide()
   $('.board').hide()
-  $('#sign-up').hide()
-  $('#sign-in').show()
 }
 const onSignUpFailure = () => {
   $('#message').text('Sign up failure')
@@ -49,10 +47,11 @@ const onCreateGameFailure = () => {
   $('message').text('Create game failure')
 }
 const onUpdateGameSuccess = (response) => {
-  console.log('in then for game update')
+  console.log(response)
+  response.game.cells.forEach(function (val, i) {})
+  $('#message').text('Update is successful!')
   store.game = response.game
-  store.playedCellsArray = store.game.cells
-  console.log('api game is over', response.game.over)
+  console.log(store.game)
 }
 
 const onUpdateGameFailure = () => {
