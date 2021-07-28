@@ -48,7 +48,7 @@ const onUpdateGame = (event) => {
   (event).preventDefault()
   console.log('click')
   const boardedClicked = $(event.target)
-  store.gameIndex = $(boardedClicked).data('cell-index')
+  store.gameIndex = $(boardedClicked).data('cell')
   console.log(store.game.over)
   store.currentPlayer = currentPlayer
   if (store.game.over) return
