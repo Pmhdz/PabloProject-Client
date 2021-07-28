@@ -37,18 +37,20 @@ const createGame = function () {
 }
 
 const updateGame = function () {
+  console.log(store)
   return $.ajax({
-    url: config.apiUrl + '/games/' + 'store.game._id',
+    url: config.apiUrl + '/games/' + store.game._id,
     method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + store.token
     },
-    date: {
+    data: {
       game: {
-        cells: {
+        cell: {
           index: store.gameIndex,
           value: store.currentPlayer
-        }
+        },
+        over: store.game.over
       }
     }
   })

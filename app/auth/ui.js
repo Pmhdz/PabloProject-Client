@@ -25,8 +25,6 @@ const onSignInSuccess = (response) => {
 const onSignInFailure = () => {
   $('#message').text('Sign in failure')
   $('#sign-in').trigger('reset')
-  $('#sign-in').show()
-  $('#sign-up').show()
 }
 
 const onSignOutSuccess = (response) => {
@@ -49,8 +47,8 @@ const onCreateGameFailure = () => {
   $('message').text('Create game failure')
 }
 const onUpdateGameSuccess = (response) => {
-  console.log(response)
-  response.game.cells.forEach(function (val, i) {})
+  // console.log(response)
+  // response.game.cells.forEach(function (val, i) {})
   $('#message').text('Update is successful!')
   store.game = response.game
   console.log(store.game)
@@ -59,6 +57,10 @@ const onUpdateGameSuccess = (response) => {
 const onUpdateGameFailure = () => {
   $('#message').text('Update failure')
 }
+const wonGame = (response) => {
+  $('#message').text('Game over')
+}
+
 module.exports = {
   onSignUpFailure,
   onSignUpSuccess,
@@ -69,5 +71,6 @@ module.exports = {
   onCreateGameSuccess,
   onCreateGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure
+  onUpdateGameFailure,
+  wonGame
 }
