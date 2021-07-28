@@ -25,6 +25,8 @@ const onSignInSuccess = (response) => {
 const onSignInFailure = () => {
   $('#message').text('Sign in failure')
   $('#sign-in').trigger('reset')
+  $('#sign-in').show()
+  $('#sign-up').show()
 }
 
 const onSignOutSuccess = (response) => {
