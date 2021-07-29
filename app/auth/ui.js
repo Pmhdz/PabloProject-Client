@@ -41,6 +41,7 @@ const onCreateGameSuccess = (response) => {
   $('sign-out').hide()
   store.game = response.game
   $('.board').show()
+  $('.cell').text('')
 }
 
 const onCreateGameFailure = () => {
@@ -58,7 +59,7 @@ const onUpdateGameFailure = () => {
   $('#message').text('Update failure')
 }
 const wonGame = (response) => {
-  $('#message').text('Game over')
+  $('#message').text('You won!')
 }
 
 module.exports = {

@@ -45,57 +45,70 @@ const onCreateGame = function (event) {
 // start player then go X and then to O
 let currentPlayer = 'x'
 const onUpdateGame = (event) => {
-  (event).preventDefault()
-  console.log('click')
+  event.preventDefault()
   const boardedClicked = $(event.target)
-  store.gameIndex = $(boardedClicked).data('cell')
-  console.log(store.game.over)
+  const index = $(boardedClicked).data('cellIndex')
+  store.gameIndex = index
   store.currentPlayer = currentPlayer
   if (store.game.over) return
-  console.log(currentPlayer + 'wins!')
   if (boardedClicked.text()) return
+  store.game.cells[index] = currentPlayer
   boardedClicked.text(currentPlayer)
   currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
   store.game.over = wonGame()
-  // const move = $(event.target)
-  // console.log(container.currentPlayer)
-  // ('#update-game').rest()
-  // console.log(event.game.Index)
-  api.updateGame(currentPlayer)
+  api.updateGame()
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
 const wonGame = function () {
   const cells = store.game.cells
-  if (cells[0] === cells[1] && cells[0] === cells[2] && cells[0] !== '') {
+  // 3 in a row
+  // top row
+  // 0,1,2
+  const one = cells[0]
+  const two = cells[1]
+  const three = cells[2]
+  const four = cells[3]
+  const five = cells[4]
+  const six = cells[5]
+  const seven = cells[6]
+  const eight = cells[7]
+  const nine = cells[8]
+  // horizontal
+  if (one === two && one === three && one !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[1] === cells[4] && cells[1] === cells[7] && cells[1] !== '') {
+
+  if (four === five && four === six && four !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[2] === cells[5] && cells[2] === cells[8] && cells[2] !== '') {
+
+  if (seven === eight && seven === nine && seven !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[3] === cells[1] && cells[0] === cells[2] && cells[0] !== '') {
+  // verticals
+  if (one === four && one === seven && one !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[0] === cells[3] && cells[0] === cells[6] && cells[0] !== '') {
+
+  if (two === five && two === eight && two !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[0] === cells[4] && cells[0] === cells[8] && cells[0] !== '') {
+  if (three === six && three === nine && three !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[6] === cells[7] && cells[6] === cells[8] && cells[6] !== '') {
+  // diagonals
+  if (one === four && one === nine && one !== '') {
     store.winner = currentPlayer
     return true
   }
-  if (cells[2] === cells[4] && cells[2] === cells[6] && cells[2] !== '') {
+  if (three === five && three === seven && three !== '') {
     store.winner = currentPlayer
     return true
   }
