@@ -38,6 +38,8 @@ const onSignOut = function (event) {
 }
 const onCreateGame = function (event) {
   event.preventDefault()
+  currentPlayer = 'x'
+  event.preventDefault()
   api.createGame()
     .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
@@ -115,6 +117,7 @@ const wonGame = function () {
 
   return false
 }
+
 module.exports = {
   onSignUp,
   onSignIn,

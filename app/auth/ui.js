@@ -51,6 +51,9 @@ const onUpdateGameSuccess = (response) => {
   // console.log(response)
   // response.game.cells.forEach(function (val, i) {})
   $('#message').text('Update is successful!')
+  $('#sign-in').hide()
+  $('#sign-up').hide()
+  $('#update-game').show()
   store.game = response.game
   console.log(store.game)
 }
@@ -58,9 +61,9 @@ const onUpdateGameSuccess = (response) => {
 const onUpdateGameFailure = () => {
   $('#message').text('Update failure')
 }
-const wonGame = (response) => {
-  $('#message').text('You won!')
-}
+// const wonGame = (response) => {
+//  $('#message').text('You won!')
+// }
 
 module.exports = {
   onSignUpFailure,
@@ -72,6 +75,6 @@ module.exports = {
   onCreateGameSuccess,
   onCreateGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure,
-  wonGame
+  onUpdateGameFailure
+  // wonGame
 }

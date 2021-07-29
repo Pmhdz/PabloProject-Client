@@ -36,7 +36,7 @@ const createGame = function () {
   })
 }
 
-const updateGame = function () {
+const updateGame = function (data) {
   console.log(store)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
