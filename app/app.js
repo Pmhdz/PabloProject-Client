@@ -12,6 +12,8 @@ $(() => {
   $('#create-game').on('click', authEvents.onCreateGame)
   $('.box').on('click', authEvents.onUpdateGame)
   $('.board').hide()
+  $('#create-game').on('submit', authEvents.onCreateGame)
+  $('.cell').on('click', authEvents.onUpdateGame)
   $('#sign-out').hide()
   $('#update-game').on('submit', authEvents.onUpdateGame)
 })

@@ -26,6 +26,7 @@ const signOut = function () {
     }
   })
 }
+// data
 const createGame = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -35,8 +36,8 @@ const createGame = function () {
     }
   })
 }
-
-const updateGame = function (data) {
+// game
+const updateGame = function () {
   console.log(store)
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,

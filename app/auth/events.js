@@ -4,6 +4,7 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../lib/get-form-fields')
 const store = require('../store')
+// let turn = true;
 const onSignUp = function (event) {
   event.preventDefault()
   // get info from event and form
@@ -114,7 +115,10 @@ const wonGame = function () {
     store.winner = currentPlayer
     return true
   }
-
+  if (cells.every((cell) => cell !== '')) {
+    store.tied = true
+    return true
+  }
   return false
 }
 
@@ -125,4 +129,5 @@ module.exports = {
   onCreateGame,
   onUpdateGame,
   wonGame
+
 }
