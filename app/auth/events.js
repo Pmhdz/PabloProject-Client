@@ -64,22 +64,23 @@ const onUpdateGame = (event) => {
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
-wonGame()
-  const game = {
-    game: {
-      cell: {
-        index: index,
-        value: player
-      },
-      over: store.game.over
-    }
-  }
-  api.updateGame(game)
-    .then(ui.onUpdateGameSuccess)
-    .catch(ui.onUpdateGameFailure)
-  turn = !turn
-  return turn
 
+// wonGame()
+// const game = {
+// game: {
+// cell: {
+//   index: index,
+//   value: player
+//  },
+//   over: store.game.over
+//  }
+// }
+// api.updateGame(game)
+//  .then(ui.onUpdateGameSuccess)
+//  .catch(ui.onUpdateGameFailure)
+//  turn = !turn
+// return turn
+// }
 
 const wonGame = function () {
   const cells = store.game.cells
