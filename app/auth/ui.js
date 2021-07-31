@@ -65,18 +65,18 @@ const onUpdateGameSuccess = (response) => {
 const onUpdateGameFailure = () => {
   $('#message').text('Update failure')
 }
-const onGamePlay = (response) => {
-  $('#message').text('You won!')
-  $('#message').text('Game in progress.')
-  store.game = response.game
-  if (store.game.over) {
-    if (store.tied) {
-      $('#message').text("It's a tie!")
-    } else {
-      $('#message').text(`'${store.winner}' is the winner !`)
-    }
-  }
-}
+// const onGamePlay = (response) => {
+// $('#message').text('You won!')
+// $('#message').text('Game in progress.')
+// store.game = response.game
+// if (store.game.over) {
+//  if (store.tied) {
+//    $('#message').text("It's a tie!")
+//  } else {
+//    $('#message').text(`'${store.winner}' is the winner !`)
+//  }
+// }
+// /}
 module.exports = {
   onSignUpFailure,
   onSignUpSuccess,
@@ -87,6 +87,6 @@ module.exports = {
   onCreateGameSuccess,
   onCreateGameFailure,
   onUpdateGameSuccess,
-  onUpdateGameFailure,
-  onGamePlay
+  onUpdateGameFailure
+  // onGamePlay
 }

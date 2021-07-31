@@ -47,6 +47,7 @@ const onCreateGame = function (event) {
 }
 // start player then go X and then to O
 let currentPlayer = 'x'
+// $('#message').text(`${currentPlayer} is the winner !`)
 const onUpdateGame = (event) => {
   event.preventDefault()
   const boardedClicked = $(event.target)
@@ -63,6 +64,23 @@ const onUpdateGame = (event) => {
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
+wonGame()
+  const game = {
+    game: {
+      cell: {
+        index: index,
+        value: player
+      },
+      over: store.game.over
+    }
+  }
+  api.updateGame(game)
+    .then(ui.onUpdateGameSuccess)
+    .catch(ui.onUpdateGameFailure)
+  turn = !turn
+  return turn
+
+
 const wonGame = function () {
   const cells = store.game.cells
   // 3 in a row
@@ -79,47 +97,56 @@ const wonGame = function () {
   const nine = cells[8]
   // horizontal
   if (one === two && one === three && one !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
 
   if (four === five && four === six && four !== '') {
     store.winner = currentPlayer
-    return true
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
 
   if (seven === eight && seven === nine && seven !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
   // verticals
   if (one === four && one === seven && one !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
 
   if (two === five && two === eight && two !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
   if (three === six && three === nine && three !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
   // diagonals
   if (one === four && one === nine && one !== '') {
-    store.winner = currentPlayer
-    return true
+    // store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
   if (three === five && three === seven && three !== '') {
-    store.winner = currentPlayer
-    return true
+  //  store.winner = currentPlayer
+    $('#message').text(`Player ${currentPlayer} has won!`)
+    return (store.game.over = true)
   }
-  if (cells.every((cell) => cell !== '')) {
-    store.tied = true
-    return true
+  if (!cells.includes('')) {
+    // store.winner = 'nobody'
+    $('#message').text('draw try again !')
+    return (store.game.over = true)
   }
-  return false
+  store.game.over = false
 }
 
 module.exports = {
