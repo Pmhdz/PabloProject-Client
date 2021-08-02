@@ -30,6 +30,9 @@ const onSignInFailure = () => {
 const onSignOutSuccess = (response) => {
   $('#message').text('Thank you for signing out')
   $('#sign-out').trigger('reset')
+  $('#sign-in').show()
+  $('#sign-up').show()
+  $('#sign-out').hide()
 }
 const onSignOutFailure = () => {
   $('message').text('Sign out failure')
@@ -65,7 +68,7 @@ const onUpdateGameSuccess = (response) => {
 const onUpdateGameFailure = () => {
   $('#message').text('Update failure')
 }
-// const onGamePlay = (response) => {
+// const onWonGame = (response) => {
 // $('#message').text('You won!')
 // $('#message').text('Game in progress.')
 // store.game = response.game

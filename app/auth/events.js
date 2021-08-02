@@ -4,7 +4,8 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../lib/get-form-fields')
 const store = require('../store')
-// let turn = true;
+
+let turn = true
 const onSignUp = function (event) {
   event.preventDefault()
   // get info from event and form
@@ -44,10 +45,12 @@ const onCreateGame = function (event) {
   api.createGame()
     .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
+  turn = true
+  return true
 }
 // start player then go X and then to O
 let currentPlayer = 'x'
-// $('#message').text(`${currentPlayer} is the winner !`)
+$('#message').text(`${currentPlayer} is the winner !`)
 const onUpdateGame = (event) => {
   event.preventDefault()
   const boardedClicked = $(event.target)
@@ -70,7 +73,7 @@ const onUpdateGame = (event) => {
 // game: {
 // cell: {
 //   index: index,
-//   value: player
+//   value: currentPlayer
 //  },
 //   over: store.game.over
 //  }
@@ -84,9 +87,14 @@ const onUpdateGame = (event) => {
 
 const wonGame = function () {
   const cells = store.game.cells
+  const currentPlayer = turn ? 'x' : 'o'
   // 3 in a row
   // top row
+  // middle row
+  // bottom row
   // 0,1,2
+  // 3,4,5
+  // 6,7,8
   const one = cells[0]
   const two = cells[1]
   const three = cells[2]
@@ -98,56 +106,55 @@ const wonGame = function () {
   const nine = cells[8]
   // horizontal
   if (one === two && one === three && one !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
 
   if (four === five && four === six && four !== '') {
     store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
 
   if (seven === eight && seven === nine && seven !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
   // verticals
   if (one === four && one === seven && one !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
 
   if (two === five && two === eight && two !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
   if (three === six && three === nine && three !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
   // diagonals
   if (one === four && one === nine && one !== '') {
-    // store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
     return (store.game.over = true)
   }
   if (three === five && three === seven && three !== '') {
-  //  store.winner = currentPlayer
+    store.winner = currentPlayer
     $('#message').text(`Player ${currentPlayer} has won!`)
-    return (store.game.over = true)
+    return true
   }
-  if (!cells.includes('')) {
-    // store.winner = 'nobody'
-    $('#message').text('draw try again !')
-    return (store.game.over = true)
+  if (cells.every((cell) => cell !== '')) {
+    store.tied = true
+    return true
   }
-  store.game.over = false
+  return false
 }
 
 module.exports = {
@@ -157,5 +164,4 @@ module.exports = {
   onCreateGame,
   onUpdateGame,
   wonGame
-
 }
