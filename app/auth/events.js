@@ -4,164 +4,138 @@ const api = require('./api')
 const ui = require('./ui')
 const getFormFields = require('./../../lib/get-form-fields')
 const store = require('../store')
-
 let turn = true
 const onSignUp = function (event) {
   event.preventDefault()
   // get info from event and form
   const form = event.target
-  console.log(form)
   const data = getFormFields(form)
-  console.log(data)
   // make an api call using AJAX
   // handle successful api call with .then
   // handle failed api call with .catch
-  api.signUp(data)
-    .then(ui.onSignUpSuccess)
-    .catch(ui.onSignUpFailure)
+  api.signUp(data).then(ui.onSignUpSuccess).catch(ui.onSignUpFailure)
 }
 const onSignIn = function (event) {
   event.preventDefault()
   // get info from event and form
   const form = event.target
+  const data = getFormFields(form)
   // make an api call using AJAX
   // handle successful api call with .then
   // handle failed api call with .catch
-  const data = getFormFields(form)
-
-  api.signIn(data)
-    .then(ui.onSignInSuccess)
-    .catch(ui.onSignInSuccess)
+  api.signIn(data).then(ui.onSignInSuccess).catch(ui.onSignInFailure)
 }
 const onSignOut = function (event) {
-  api.signOut()
-    .then(ui.onSignOutSuccess)
-    .catch(ui.onSignOutFailure)
+  api.signOut().then(ui.onSignOutSuccess).catch(ui.onSignOutFailure)
 }
 const onCreateGame = function (event) {
+  // handle successful api call with .then
+  // handle failed api call with .catch
   event.preventDefault()
-  currentPlayer = 'x'
-  event.preventDefault()
-  api.createGame()
+  // get data
+  const form = event.target
+  const data = getFormFields(form)
+  api
+    .createGame(data)
     .then(ui.onCreateGameSuccess)
     .catch(ui.onCreateGameFailure)
   turn = true
   return true
 }
-// start player then go X and then to O
-let currentPlayer = 'x'
-$('#message').text(`${currentPlayer} is the winner !`)
+
 const onUpdateGame = (event) => {
+  // prevents click event from page refresh
   event.preventDefault()
-  const boardedClicked = $(event.target)
-  const index = $(boardedClicked).data('cellIndex')
-  store.gameIndex = index
-  store.currentPlayer = currentPlayer
+  // board click holds click event
+  const boardClicked = $(event.target)
+  // data cell index clicked stored in index
+  const index = $(boardClicked).data('cell-index')
+  // store.gameIndex = index
+  // console.log(store.gameIndex)
+  // console.log(index)
+  // console.log(store.game.over)
+  // store.currentPlayer = currentPlayer
+  // boardClicked.text(currentPlayer)
+  const player = turn ? 'x' : 'o'
+  store.game.cells[index] = player
   if (store.game.over) return
-  if (boardedClicked.text()) return
-  store.game.cells[index] = currentPlayer
-  boardedClicked.text(currentPlayer)
-  currentPlayer = currentPlayer === 'o' ? 'x' : 'o'
-  store.game.over = wonGame()
-  api.updateGame()
+  // if statement and return
+  // if ($(boardClicked).text()) return
+  if ($($('.cell')[index]).text()) return
+
+  checkWin()
+  const game = {
+    game: {
+      cell: {
+        index: index,
+        value: player
+      },
+      over: store.game.over
+    }
+  }
+  api
+    .updateGame(game)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
+  turn = !turn
+  return turn
 }
-
-// wonGame()
-// const game = {
-// game: {
-// cell: {
-//   index: index,
-//   value: currentPlayer
-//  },
-//   over: store.game.over
-//  }
-// }
-// api.updateGame(game)
-//  .then(ui.onUpdateGameSuccess)
-//  .catch(ui.onUpdateGameFailure)
-//  turn = !turn
-// return turn
-// }
-
-const wonGame = function () {
+const checkWin = () => {
   const cells = store.game.cells
-  const currentPlayer = turn ? 'x' : 'o'
-  // 3 in a row
-  // top row
-  // middle row
-  // bottom row
-  // 0,1,2
-  // 3,4,5
-  // 6,7,8
-  const one = cells[0]
-  const two = cells[1]
-  const three = cells[2]
-  const four = cells[3]
-  const five = cells[4]
-  const six = cells[5]
-  const seven = cells[6]
-  const eight = cells[7]
-  const nine = cells[8]
-  // horizontal
-  if (one === two && one === three && one !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-
-  if (four === five && four === six && four !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-
-  if (seven === eight && seven === nine && seven !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-  // verticals
-  if (one === four && one === seven && one !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-
-  if (two === five && two === eight && two !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-  if (three === six && three === nine && three !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
-  }
-  // diagonals
-  if (one === four && one === nine && one !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
+  const player = turn ? 'x' : 'o'
+  // store.winner = currentPlayer
+  if (cells[0] === cells[1] && cells[1] === cells[2] && cells[0] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
     return (store.game.over = true)
   }
-  if (three === five && three === seven && three !== '') {
-    store.winner = currentPlayer
-    $('#message').text(`Player ${currentPlayer} has won!`)
-    return true
+  if (cells[3] === cells[4] && cells[4] === cells[5] && cells[3] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
   }
-  if (cells.every((cell) => cell !== '')) {
-    store.tied = true
-    return true
+  if (cells[6] === cells[7] && cells[7] === cells[8] && cells[6] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
   }
-  return false
+  if (cells[0] === cells[3] && cells[3] === cells[6] && cells[0] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
+  }
+  if (cells[1] === cells[4] && cells[4] === cells[7] && cells[1] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
+  }
+  if (cells[2] === cells[5] && cells[5] === cells[8] && cells[2] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
+  }
+  if (cells[0] === cells[4] && cells[4] === cells[8] && cells[0] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
+  }
+  if (cells[2] === cells[4] && cells[4] === cells[6] && cells[2] !== '') {
+    // store.winner = player
+    $('#message').text(`Player ${player} has won!`)
+    return (store.game.over = true)
+  }
+  if (!cells.includes('')) {
+    // store.winner = 'nobody'
+    $('#message').text('draw try again !')
+    return (store.game.over = true)
+  }
+  store.game.over = false
 }
-
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
   onCreateGame,
   onUpdateGame,
-  wonGame
+  checkWin
 }

@@ -9,14 +9,16 @@ const signUp = function (data) {
     data: data
   })
 }
+// sign in
 const signIn = function (data) {
   console.log(data)
   return $.ajax({
     url: config.apiUrl + '/sign-in',
     method: 'POST',
-    data: data
+    data
   })
 }
+// sign out
 const signOut = function () {
   return $.ajax({
     url: config.apiUrl + '/sign-out',
@@ -26,8 +28,8 @@ const signOut = function () {
     }
   })
 }
-// data
-const createGame = function () {
+// create game
+const createGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',
@@ -36,23 +38,15 @@ const createGame = function () {
     }
   })
 }
-// game
-const updateGame = function () {
-  console.log(store)
+// eslint-disable-next-line no-undef
+// update game
+const updateGame = function (game) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game._id,
     method: 'PATCH',
+    data: game,
     headers: {
       Authorization: 'Bearer ' + store.token
-    },
-    data: {
-      game: {
-        cell: {
-          index: store.gameIndex,
-          value: store.currentPlayer
-        },
-        over: store.game.over
-      }
     }
   })
 }

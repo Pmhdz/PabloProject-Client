@@ -1,71 +1,82 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>
+    Tic Tac Toe
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <p id="message"></p>
-      <h1><u>Welcome to Pablo's Tic-Tac-Toe Game!</u></h1>
-      <br>
-      <h2>Sign Up</h2>
-      <form id="sign-up">
-        <label>Email</label>
-        <input name="credentials[email]" type="email">
-        <label>Password</label>
-        <input name="credentials[password]" type="password">
-        <label>Password Confirmation</label>
-        <input name="credentials[password_confirmation]" type="password">
-        <input type="submit" value="Sign Up">
-      </form>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-      </style>
-      <br>
-      <h2>Sign In</h2>
-      <form id="sign-in">
-        <label>Email</label>
-        <input name="credentials[email]" type="email">
-        <label>Password</label>
-        <input name="credentials[password]" type="password">
-        <input type="submit" value="Sign In">
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      </form>
-      <button id="sign-out" type="Sign Out">Sign Out</button>
-      <br> <br>
-      <button id="create-game" type="Create Game">Want to start a game of tic tac toe?</button>
+<body>
+  <br>
+  <h1>
+    <strong>P</strong>ablo's
+    <strong>T</strong>ic
+    <strong>T</strong>ac
+    <strong>T</strong>oe
+  </h1>
+  <p id="message"></p>
+  <form id="sign-up">
+    <h2>Please sign up or sign in to continue.</h2>
+    <h2>Sign Up!</h2>
+    <label> Email:</label>
+    <input name="credentials[email]" type="email">
+    <label>Password:</label>
+    <input name="credentials[password]" type="password">
+    <label>Password Confirmation:</label>
+    <input name="credentials[password_confirmation]" type="password">
+    <input type="submit" value="Sign up">
+  </form>
+  <br>
+  <form id="sign-in">
+    <h2>Log In and Play!</h2>
+    <label> Email:</label>
+    <input name="credentials[email]" type="email">
+    <label>Password:</label>
+    <input name="credentials[password]" type="password">
+    <input type="submit" value="Sign In">
+  </form>
 
-      <br> <br>
+  <button id="sign-out">Sign Out</button>
+  <br> <br>
+  <form id="create-game">
+    <button type="submit">Play Tic Tac Toe!</button>
+  </form>
+  <br> <br>
+  <section class="container">
+    <div id="board">
+      <div class="row board">
+        <div class="row row-cols-3">
 
-      <section class="container">
+          <div class="cell col border-bottom border-end" data-cell-index="0"></div>
 
-        <div class="row h-100 board">
-        <div class="col-4 box" data-cell-index="0"></div>
-        <div class="col-4 box" data-cell-index="1"></div>
-        <div class="col-4 box" data-cell-index="2"></div>
+          <div class="cell col border-bottom border-end border-start" data-cell-index="1"></div>
 
-        <div class="col-4 box" data-cell-index="3"></div>
-        <div class="col-4 box" data-cell-index="4"></div>
-        <div class="col-4 box" data-cell-index="5"></div>
+          <div class="cell col border-bottom border-start" data-cell-index="2"></div>
 
-        <div class="col-4 box" data-cell-index="6"></div>
-        <div class="col-4 box" data-cell-index="7"></div>
-        <div class="col-4 box" data-cell-index="8"></div>
+          <div class="cell ol border-bottom border-end" data-cell-index="3"></div>
 
+          <div class="cell col border-bottom border-end border-start" data-cell-index="4"></div>
 
+          <div class="cell col border-bottom border-start" data-cell-index="5"></div>
+
+          <div class="cell col border-end border-top" data-cell-index="6"></div>
+
+          <div class="cell col border-start border-top border-end" data-cell-index="7"></div>
+
+          <div class="cell col border-top border-start" data-cell-index="8"></div>
+        </div>
       </div>
-      </section>
+    </div>
+  </section>
+</body>
 
-      <form>
-
-        </form>
-    </body>
-    </html>
+</html>
