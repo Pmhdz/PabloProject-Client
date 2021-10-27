@@ -1,0 +1,68 @@
+@import '~bootstrap/scss/bootstrap';
+
+  body {
+    background-color: lightblue;
+  }
+  h1 {
+    padding: 5px;
+    color: black;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 60px;
+    background:	rgb(238, 82, 82);
+  }
+  h2 {
+    padding: 10px;
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  }
+form {
+  text-align: center;
+}
+ .board{
+    margin: auto;
+    text-align: center;
+    color: black;
+    // setting max size of board to be 100% of //  the view port
+    max-height: calc(100vh - 75px);
+    max-height: calc(100vh - 75px) ;
+ }
+.row.board{
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  color: black;
+}
+button{
+  height: 60px;
+  color: black;
+  background-color: rgb(221, 83, 83) ;
+  padding-top: 5px;
+  border-radius: 8px;
+  margin-right: auto;
+
+}
+p {
+  align-self: center;
+  font-size: 25px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+  text-align: center;
+  position: relative;
+}
+#sign-in{
+ background-color: lightblue;
+ padding-bottom: 20px;
+}
+
+h3 {
+   padding: 5px;
+    color: black;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 60px;
+    background:lightblue	;
+}
+
+.box:hover  {
+  background-color:rgb(221, 83, 83) ;
+}
